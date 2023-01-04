@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using NGUYENVANA025.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Set connect
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
